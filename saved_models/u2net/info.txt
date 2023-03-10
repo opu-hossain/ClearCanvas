@@ -1,0 +1,2 @@
+In this ' u2net' directory, you have to save the "u2net.pth" in order to run the application without any error.
+note without the 'u2net.pth' the application will not work. 

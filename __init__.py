@@ -1,6 +1,4 @@
 import torch
-import torch.nn as nn
-import torch.optim as optim
 import numpy as np
 import cv2
 import uuid
@@ -117,5 +115,3 @@ else:
 
 print("---Removing Background...")
 # ------- Call The removeBg Function --------
-# imgPath = "/home/salman/Codes/AI-Project/pythonProject/static/inputs/cat.jpg"  # Change this to your image path
-# print(removeBg(imgPath))
