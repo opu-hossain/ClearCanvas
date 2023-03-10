@@ -5,8 +5,7 @@
 This is a fun project of mine. In this project i have created a fully functional Web Application Using `flask` that removes the background of any image using AI Model. I have used Python for this project. Anyone can use this project for fun and learn something new.
 
 ## About This Project
-My Goal was to reverse engineer the `https://www.remove.bg/` website. In My project , I Used an AI model "U2NET" that detect the Image Subject and remove the background. Note that this model is not perfect. And i used Flask for the Web interface.
-
+My Goal was to reverse engineer the `https://www.remove.bg/` website. In My project , I Used an AI model "U2NET" that detect the Image subject and remove's the background. Note that this model is not perfect.
 ### WorkFlow
 #### The project has 4 folder's
 1. model (It contains the AI that removes the background of the image )
