@@ -19,7 +19,7 @@ def index():
         output_filename = unc + '.png'
         output_path = os.path.join(app.root_path, 'static', 'results', output_filename)
         # render the template with output image and download button
-        return render_template('index.html', output_path=output_path, output_filename=, input_file=filename)
+        return render_template('index.html', output_path=output_path, output_filename=output_filename, input_file=filename)
     return render_template('index.html')
 
 
