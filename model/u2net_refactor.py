@@ -1,5 +1,5 @@
 import torch
-import torch.nn as nn
+import torch.nn.functional as nn
 
 import math
 
@@ -7,7 +7,7 @@ __all__ = ['U2NET_full', 'U2NET_lite']
 
 
 def _upsample_like(x, size):
-    return nn.Upsample(size=size, mode='bilinear', align_corners=False)(x)
+    return nn.interpolate(x, size=size, mode='bilinear', align_corners=False)
 
 
 def _size_map(x, height):

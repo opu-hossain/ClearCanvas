@@ -96,9 +96,6 @@ def removeBg(imagePath):
     return "---Success---", unique_filename
 
 
-
-
-
 # ------- Load Trained Model --------
 print("---Loading Model---")
 model_name = 'u2net'
