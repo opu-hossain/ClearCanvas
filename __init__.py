@@ -1,7 +1,6 @@
 import torch
 import numpy as np
 import cv2
-import uuid
 import os
 
 from model import U2NET
@@ -11,12 +10,11 @@ from PIL import Image
 
 # Get The Current Directory
 currentDir = os.path.dirname(__file__)
-unc = str(uuid.uuid4())
 
 
 # Functions:
 # Save Results
-
+    
 
 def save_output(image_name, output_name, pred, d_dir, type):
     predict = pred
@@ -42,7 +40,6 @@ def save_output(image_name, output_name, pred, d_dir, type):
 def removeBg(imagePath):
     inputs_dir = os.path.join(currentDir, 'static/inputs/')
     results_dir = os.path.join(currentDir, 'static/results/')
-    masks_dir = os.path.join(currentDir, 'static/masks/')
 
     # convert string of image data to uint8
     with open(imagePath, "rb") as image:
@@ -62,8 +59,8 @@ def removeBg(imagePath):
         return "---Empty image---"
 
     # save image to inputs
-    unique_filename = unc
-    cv2.imwrite(inputs_dir + unique_filename + '.jpg', img)
+    filename = os.path.basename(imagePath)
+    cv2.imwrite(inputs_dir + filename + '.jpg', img)
 
     # processing
     image = transform.resize(img, (320, 320), mode='constant')
@@ -88,12 +85,10 @@ def removeBg(imagePath):
     dn = (pred - mi) / (ma - mi)
     pred = dn
 
-    save_output(inputs_dir + unique_filename + '.jpg', unique_filename +
+    save_output(inputs_dir + filename + '.jpg', filename +
                 '.png', pred, results_dir, 'image')
-    save_output(inputs_dir + unique_filename + '.jpg', unique_filename +
-                '.png', pred, masks_dir, 'mask')
 
-    return "---Success---", unique_filename
+    return "---Success---", filename
 
 
 # ------- Load Trained Model --------

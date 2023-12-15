@@ -12,7 +12,7 @@ My Goal was to reverse engineer the `https://www.remove.bg/` website. In My proj
 #### The project has 4 folders
 1. model (It contains the AI that removes the background of the image )
 
-2. static (It contains `CSS` for the style of web page, `inputs` directory for inputted image, `results` directory for Background removed image, and extra `masks`.)
+2. static (It contains `CSS` for the style of web page, `inputs` directory for inputted image, `results` directory for Background removed image)
 
 3. templates (It contains the `index.html` file for the Web Interface)
 4. saved_models (It contains Pre-Trained Model Data `u2net.pth`)
