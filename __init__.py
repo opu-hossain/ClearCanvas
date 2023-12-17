@@ -104,6 +104,5 @@ else:
     net.load_state_dict(torch.load(model_dir, map_location='cpu'))
 # ------- Load Trained Model --------
 
-
-print("---Removing Background...")
+#print("---Removing Background...")
 # ------- Call The removeBg Function --------
