@@ -47,7 +47,7 @@ If you wish to run this project on your own device, make sure you have python in
 
 Now you are ready to Remove you're background:)!. For those who don't know "You'll see an IP with prot '5000'" `http://127.0.0.1:5000/` in your terminal. just open it to access the Website.
 ### License
-Copyright (c) 2023 Salman Hossain.
+Copyright (c) 2024 Salman Hossain.
 
 This project is licensed under the MIT License - see the [LICENSE.md] file for details.
 
