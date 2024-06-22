@@ -38,35 +38,54 @@ def save_output(image_name, output_name, pred, d_dir, type):
 
 
 def removeBg(imagePath):
+    """
+    Remove the background from an image and save the result.
+
+    Args:
+        imagePath (str): The path to the image file.
+
+    Returns:
+        tuple: A tuple containing a message and the filename of the saved image.
+            - message (str): A success message if the background removal is successful,
+              otherwise an error message.
+            - filename (str): The filename of the saved image.
+    """
+    # Set the directories for inputs and results
     inputs_dir = os.path.join(currentDir, 'static/inputs/')
     results_dir = os.path.join(currentDir, 'static/results/')
 
-    # convert string of image data to uint8
+    # Ensure directories exist
+    os.makedirs(inputs_dir, exist_ok=True)
+    os.makedirs(results_dir, exist_ok=True)
+
+    # Read the image file into a numpy array
     with open(imagePath, "rb") as image:
         f = image.read()
         img = bytearray(f)
 
     nparr = np.frombuffer(img, np.uint8)
 
+    # Check if the image is empty
     if len(nparr) == 0:
-        return '---Empty image---'
+        return '---Empty image---', None
 
-    # decode image
+    # Decode the image
     try:
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     except:
-        # build a response dict to send back to client
-        return "---Empty image---"
+        # Return an error message if the image cannot be decoded
+        return "---Empty image---", None
 
-    # save image to inputs
+    # Correct the filename for saving to inputs directory
     filename = os.path.basename(imagePath)
-    cv2.imwrite(inputs_dir + filename + '.jpg', img)
+    input_filename = os.path.splitext(filename)[0] + '.jpg'  # Ensure the extension is .jpg
+    cv2.imwrite(os.path.join(inputs_dir, input_filename), img)
 
-    # processing
+    # Process the image
     image = transform.resize(img, (320, 320), mode='constant')
 
+    # Normalize the image
     tmpImg = np.zeros((image.shape[0], image.shape[1], 3))
-
     tmpImg[:, :, 0] = (image[:, :, 0] - 0.485) / 0.229
     tmpImg[:, :, 1] = (image[:, :, 1] - 0.456) / 0.224
     tmpImg[:, :, 2] = (image[:, :, 2] - 0.406) / 0.225
@@ -78,6 +97,7 @@ def removeBg(imagePath):
     image = image.type(torch.FloatTensor)
     image = Variable(image)
 
+    # Pass the image through the network and get the predicted mask
     d1, d2, d3, d4, d5, d6, d7 = net(image)
     pred = d1[:, 0, :, :]
     ma = torch.max(pred)
@@ -85,11 +105,11 @@ def removeBg(imagePath):
     dn = (pred - mi) / (ma - mi)
     pred = dn
 
-    save_output(inputs_dir + filename + '.jpg', filename +
-                '.png', pred, results_dir, 'image')
+    # Correct the filename for saving to results directory
+    result_filename = os.path.splitext(filename)[0] + '.png'  # Ensure the extension is .png
+    save_output(imagePath, result_filename, pred, results_dir, 'image')
 
-    return "---Success---", filename
-
+    return "---Success---", result_filename
 
 # ------- Load Trained Model --------
 print("---Loading Model---")
