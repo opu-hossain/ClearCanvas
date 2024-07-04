@@ -143,3 +143,9 @@ cython_debug/
 # Ignore all files in any migrations directories except the __init__.py file
 */migrations/*
 !*/migrations/__init__.py
+
+media/inputs/*
+media/outputs/*
+
+!media/inputs/.gitkeep
+!media/outputs/.gitkeep

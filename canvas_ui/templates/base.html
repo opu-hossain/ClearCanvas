@@ -5,23 +5,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clear Canvas</title>
-    {% comment %} <link rel="stylesheet" href="styles.css"> {% endcomment %}
-    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extra_css %}
+    {% endblock %}
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Your Logo</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<header>
-    <h1>Clear Canvas</h1>
-</header>
+    {% block content %}
+    {% endblock %}
 
-<main>
-    <canvas id="clearCanvas" width="800" height="600"></canvas>
-</main>
-
-<footer>
-    <p>Footer Content</p>
-</footer>
-
+    <footer>
+        <p>&copy; 2024 Company Name. All rights reserved.</p>
+    </footer>
 </body>
 </html>
