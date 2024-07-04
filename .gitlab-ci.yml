@@ -25,16 +25,20 @@ build:
   variables:
     PYTHON_VERSIONS: "3.10, 3.11, 3.12"
   script:
-    - apt-get update && apt-get install -y python3-pip python3-dev
-    - for PYTHON_VERSION in ${PYTHON_VERSIONS//, / }; do
-        echo "Setting up Python $PYTHON_VERSION";
-        pyenv install $PYTHON_VERSION;
-        pyenv global $PYTHON_VERSION;
-        python --version;
-        python -m pip install --upgrade pip;
-        pip install -r requirements.txt;
-        python manage.py test;
-      done
+  - apt-get update && apt-get install -y python3-pip python3-dev git curl build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
+  - curl https://pyenv.run | bash
+  - export PATH="/root/.pyenv/bin:$PATH"
+  - eval "$(pyenv init --path)"
+  - eval "$(pyenv virtualenv-init -)"
+  - for PYTHON_VERSION in ${PYTHON_VERSIONS//, / }; do
+      echo "Setting up Python $PYTHON_VERSION";
+      pyenv install $PYTHON_VERSION;
+      pyenv global $PYTHON_VERSION;
+      python --version;
+      python -m pip install --upgrade pip;
+      pip install -r requirements.txt;
+      python manage.py test;
+    done
   only:
     - master
   except:
