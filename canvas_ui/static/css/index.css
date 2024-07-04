@@ -1,0 +1,92 @@
+/* Image Comparison Section */
+.image-comparison {
+    text-align: center;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    max-width: 1200px;
+}
+
+.images {
+    display: flex;
+    justify-content: center;
+    gap: 2%;
+    margin-bottom: 30px;
+}
+
+.images img {
+    width: 48%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.images img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* Button Enhancements */
+.btn-primary {
+    background-color: #007BFF;
+    color: white;
+    padding: 14px 32px;
+    text-decoration: none;
+    border-radius: 8px;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Form Improvements */
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 40px;
+    padding: 30px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+form button {
+    background-color: #28a745;
+    color: white;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+form button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Clear both style */
+.clear {
+    clear: both;
+}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block title %}
+    ClearCanvas - Upload Image
+{% endblock %}
+
+{% block content %}
+    {% if original_image_url and processed_image_url %}
+        <div class="image-comparison">
+            <h2>Image Comparison</h2>
+            <div class="images">
+                <img src="{{ original_image_url }}" alt="Original Image" style="width: 49%; float: left;">
+                <img src="{{ processed_image_url }}" alt="Processed Image" style="width: 49%; float: right;">
+            </div>
+            <div style="clear: both;"></div>
+            <a href="{{ download_url }}" class="btn btn-primary">Download Image</a>
+        </div>
+    {% else %}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Upload</button>
+        </form>
+    {% endif %}
+{% endblock %}
