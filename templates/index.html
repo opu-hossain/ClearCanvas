@@ -1,0 +1,42 @@
+<!-- This is the HTML template for the index page of the web application. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Remove Background</title>
+    <!-- Link the CSS file for styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Heading for the web application -->
+    <h1>Remove Background</h1>
+    <!-- Form for uploading the image -->
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <!-- Input field for selecting an image file -->
+        <input type="file" name="image" required>
+        <!-- Submit button for removing the background -->
+        <input type="submit" value="Remove Background">
+    </form>
+    <!-- If an output image is available, display it -->
+    {% if output_path %}
+        <!-- Heading for the output image -->
+        <h2>Output Image</h2>
+        <div>
+            <!-- Container for the output image and the input image -->
+            <div class="image-slider">
+                <!-- Display the output image -->
+                <div>
+                    <img src="{{ url_for('static', filename='results/' + output_filename) }}" />
+                </div>
+                <!-- Display the input image -->
+                <img src="{{ url_for('static', filename='inputs/' + input_file) }}" />
+            </div>
+        </div>
+        <br>
+        <!-- Download button for the output image -->
+        <a href="{{ url_for('download', filename=output_filename) }}">Download</a>
+    {% endif %}
+</body>
+</html>
+
